@@ -1,0 +1,35 @@
+
+    <canvas id="imageCanvas"></canvas>
+
+    <script>
+    const canvas = document.getElementById("imageCanvas");
+    const context = canvas.getContext("2d");
+
+    // Set canvas dimensions
+    canvas.width = "<%= size %>";
+    canvas.height = "<%= size %>";
+
+    // Set background color
+    context.fillStyle = "#<%= background %>";
+    context.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Set text properties
+    context.font = "<%= fontStyle %> <%= fontSize %>px Arial";
+    context.fillStyle = "#<%= color %>";
+    context.textAlign = "center";
+    context.textBaseline = "middle";
+
+    // Draw text
+    const content = "<%= name %>";
+    context.fillText(content, canvas.width / 2, canvas.height / 2);
+
+    // Convert canvas to image
+    const image = new Image();
+    image.src = canvas.toDataURL("image/png"); // Convert canvas to image data URL
+
+    // Append the image to the body
+    document.querySelector('canvas').remove()
+    document.body.append(image);
+    
+    document.querySelector('script').remove()
+  </script>
